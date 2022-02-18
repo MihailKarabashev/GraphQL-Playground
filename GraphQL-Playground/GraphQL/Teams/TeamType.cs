@@ -1,4 +1,5 @@
 ﻿using GraphQL_Playground.Data;
+using GraphQL_Playground.GraphQL.FilterCustomizations;
 using GraphQL_Playground.Models;
 using HotChocolate;
 using HotChocolate.Types;
@@ -8,7 +9,6 @@ namespace GraphQL_Playground.GraphQL
 {
     public class TeamType : ObjectType<Team>
     {
-
         protected override void Configure(IObjectTypeDescriptor<Team> descriptor)
         {
             descriptor
@@ -18,6 +18,8 @@ namespace GraphQL_Playground.GraphQL
                 .Field(x => x.Players)
                 .ResolveWith<Resolver>(r => r.GetPlayers(default!, default!))
                 .UseDbContext<AppDbContext>();
+                //.UseFiltering<TeamFilterType>();
+                
         }
 
         private class Resolver 

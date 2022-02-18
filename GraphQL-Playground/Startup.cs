@@ -1,5 +1,6 @@
 using GraphQL_Playground.Data;
 using GraphQL_Playground.GraphQL;
+using GraphQL_Playground.GraphQL.Players;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,7 +32,9 @@ namespace GraphQL_Playground
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
                 .AddType<TeamType>()
-                .AddProjections();
+                .AddType<PlayerType>()
+                .AddFiltering();
+                //.AddSorting();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
