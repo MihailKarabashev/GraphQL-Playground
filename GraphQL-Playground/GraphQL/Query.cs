@@ -10,9 +10,16 @@ namespace GraphQL_Playground.GraphQL
     {
         [UseDbContext(typeof(AppDbContext))]
         [UseProjection]
-        public IQueryable<Team> GetTeams([ScopedService] AppDbContext context)
+        public IQueryable<Team> GetTeam([ScopedService] AppDbContext context)
         {
             return context.Teams;
+        }
+
+        [UseDbContext(typeof(AppDbContext))]
+        [UseProjection]
+        public IQueryable<Player> GetPlayers([ScopedService] AppDbContext context)
+        {
+            return context.Players;
         }
     }
 }

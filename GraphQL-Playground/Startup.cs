@@ -30,6 +30,7 @@ namespace GraphQL_Playground
             services
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
+                .AddType<TeamType>()
                 .AddProjections();
         }
 
