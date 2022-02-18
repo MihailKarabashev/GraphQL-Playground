@@ -1,4 +1,5 @@
 using GraphQL_Playground.Data;
+using GraphQL_Playground.GraphQL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -22,8 +23,14 @@ namespace GraphQL_Playground
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(
-                options => options.UseSqlServer(this._configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddPooledDbContextFactory<AppDbContext>(
+                options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+
+            services
+                .AddGraphQLServer()
+                .AddQueryType<Query>()
+                .AddProjections();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -37,10 +44,7 @@ namespace GraphQL_Playground
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapGraphQL();
             });
         }
     }
