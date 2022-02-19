@@ -19,7 +19,6 @@ namespace GraphQL_Playground.GraphQL
                 .ResolveWith<Resolver>(r => r.GetPlayers(default!, default!))
                 .UseDbContext<AppDbContext>();
                 //.UseFiltering<TeamFilterType>();
-                
         }
 
         private class Resolver 

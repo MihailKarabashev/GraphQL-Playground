@@ -7,18 +7,18 @@ namespace GraphQL_Playground.GraphQL.FilterCustomizations
     {
         protected override void Configure(IFilterInputTypeDescriptor<Team> descriptor)
         {
-            descriptor.BindFieldsExplicitly();
-
-            descriptor.Field(x => x.Name).Type<CustomStringLimitarionInput>();
+            descriptor.AllowAnd(true).AllowOr(false);
         }
-       
+
     }
 
     public class CustomStringLimitarionInput : StringOperationFilterInputType
     {
         protected override void Configure(IFilterInputTypeDescriptor descriptor)
         {
-            descriptor.Operation(DefaultFilterOperations.StartsWith);
+            descriptor.Operation(DefaultFilterOperations.Equals);
+            descriptor.Operation(DefaultFilterOperations.NotEquals);
+
         }
     }
 }

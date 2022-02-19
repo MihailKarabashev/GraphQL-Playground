@@ -15,10 +15,12 @@ namespace GraphQL_Playground
     public class Startup
     {
         private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _env;
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             _configuration = configuration;
+            _env = env;
         }
 
         
@@ -33,7 +35,9 @@ namespace GraphQL_Playground
                 .AddQueryType<Query>()
                 .AddType<TeamType>()
                 .AddType<PlayerType>()
-                .AddFiltering();
+                .AddFiltering()
+                .AddSorting()
+                .ModifyRequestOptions(opt => opt.IncludeExceptionDetails = _env.IsDevelopment());
                 //.AddSorting();
         }
 
