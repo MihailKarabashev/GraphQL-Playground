@@ -34,9 +34,11 @@ namespace GraphQL_Playground
             services
                 .AddGraphQLServer()
                 .AddQueryType()
+                .AddMutationType()
 
                 .AddTypeExtension<TeamQueries>()
-                .AddMutationType<TeamMutations>();
+                .AddTypeExtension<TeamMutations>()
+                .AddDataLoader<TeamByIdDataLoader>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
