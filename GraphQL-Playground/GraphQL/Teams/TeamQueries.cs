@@ -4,6 +4,7 @@ using HotChocolate;
 using HotChocolate.Data;
 using HotChocolate.Types;
 using HotChocolate.Types.Relay;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,5 +28,7 @@ namespace GraphQL_Playground.GraphQL.Teams
         {
             return await teamLoader.LoadAsync(id, cancellationToken);
         }
+
+       //use group data loader for fetching multiple entities
     }
 }
