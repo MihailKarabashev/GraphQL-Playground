@@ -32,6 +32,7 @@ namespace GraphQL_Playground.GraphQL.Teams
 
             return await dbContext.Teams
                 .Where(x => keys.Contains(x.Id))
+                .Include(x=> x.Players)
                 .ToDictionaryAsync(d => d.Id, cancellationToken);
         }
     }

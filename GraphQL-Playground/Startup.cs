@@ -1,4 +1,5 @@
 using GraphQL_Playground.Data;
+using GraphQL_Playground.DataLoader.Player;
 using GraphQL_Playground.GraphQL.Players;
 using GraphQL_Playground.GraphQL.Teams;
 using Microsoft.AspNetCore.Builder;
@@ -37,8 +38,10 @@ namespace GraphQL_Playground
                 .AddDataLoader<TeamByIdDataLoader>()
 
                 .AddTypeExtension<PlayerQueries>()
+                .AddDataLoader<PlayerByIdDataLoader>()
 
                 .AddMaxExecutionDepthRule(3)
+                
                 .AddFiltering()
                 .AddSorting()
                 .AddProjections();
