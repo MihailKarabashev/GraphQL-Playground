@@ -38,6 +38,7 @@ namespace GraphQL_Playground
 
                 .AddTypeExtension<PlayerQueries>()
 
+                .AddMaxExecutionDepthRule(3)
                 .AddFiltering()
                 .AddSorting()
                 .AddProjections();
