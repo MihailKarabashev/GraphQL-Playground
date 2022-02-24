@@ -25,6 +25,8 @@ namespace GraphQL_Playground
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddPooledDbContextFactory<AppDbContext>(
                 options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
@@ -38,6 +40,7 @@ namespace GraphQL_Playground
                 .AddDataLoader<TeamByIdDataLoader>()
 
                 .AddTypeExtension<PlayerQueries>()
+                .AddTypeExtension<PlayerMutations>()
                 .AddDataLoader<PlayerByIdDataLoader>()
 
                 .AddMaxExecutionDepthRule(3)
