@@ -39,7 +39,8 @@ namespace GraphQL_Playground
                 .AddTypeExtension<PlayerQueries>()
 
                 .AddFiltering()
-                .AddSorting();
+                .AddSorting()
+                .AddProjections();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

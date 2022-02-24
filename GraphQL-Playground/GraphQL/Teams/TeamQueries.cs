@@ -17,6 +17,7 @@ namespace GraphQL_Playground.GraphQL.Teams
     public class TeamQueries
     {
         [UseDbContext(typeof(AppDbContext))]
+        [UseProjection]
         [UseFiltering(typeof(TeamFilterType))]
         [UseSorting(typeof(TeamSortType))]
         public IQueryable<Team> GetTeams([ScopedService] AppDbContext context)

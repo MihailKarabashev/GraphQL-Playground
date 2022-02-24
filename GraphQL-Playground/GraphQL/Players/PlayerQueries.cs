@@ -14,6 +14,7 @@ namespace GraphQL_Playground.GraphQL.Players
     {
 
         [UseDbContext(typeof(AppDbContext))]
+        [UseProjection]
         [UseFiltering(typeof(PlayerFilterType))]
         [UseSorting]
         public IQueryable<Player> GetPlayers([ScopedService] AppDbContext context)
