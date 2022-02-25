@@ -6,7 +6,10 @@
   </PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="AppAny.HotChocolate.FluentValidation" Version="0.6.2" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+		<PackageReference Include="FluentValidation" Version="10.3.6" />
+		<PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />
 		<PackageReference Include="HotChocolate.AspNetCore" Version="12.6.0" />
 		<PackageReference Include="HotChocolate.Data" Version="12.6.0" />
 		<PackageReference Include="HotChocolate.Data.Entityframework" Version="12.6.0" />

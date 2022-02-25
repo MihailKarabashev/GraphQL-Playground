@@ -1,7 +1,10 @@
+using AppAny.HotChocolate.FluentValidation;
+using FluentValidation.AspNetCore;
 using GraphQL_Playground.Data;
 using GraphQL_Playground.DataLoader.Player;
 using GraphQL_Playground.GraphQL.Players;
 using GraphQL_Playground.GraphQL.Teams;
+using GraphQL_Playground.Validators;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +27,10 @@ namespace GraphQL_Playground
         
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddFluentValidation(fv=> {
+                fv.RegisterValidatorsFromAssemblyContaining<Startup>();
+            });
+            services.AddTransient<PlayerTypeInputValidator>();
 
             services.AddAutoMapper(typeof(Startup));
 
@@ -44,10 +51,11 @@ namespace GraphQL_Playground
                 .AddDataLoader<PlayerByIdDataLoader>()
 
                 .AddMaxExecutionDepthRule(3)
-                
+
                 .AddFiltering()
                 .AddSorting()
-                .AddProjections();
+                .AddProjections()
+                .AddFluentValidation();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
